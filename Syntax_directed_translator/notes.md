@@ -6,4 +6,4 @@ Semantics: What the program means
 
 Two kinds of intermediate code generation:
 -
-- 
+* 
