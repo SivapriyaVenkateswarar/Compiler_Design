@@ -93,6 +93,7 @@ Syntax definition
          translate(Term);
          handle('+'); }  // Semantic action
       - Attribute: A quantity associated with the construct.
+      - Quantities can be associated with programming constructs using grammars.
         - Eg:
             - Type information (eg: FLOAT, BOOL)
             - Intermediate code fragments (eg: instructions generated for an expression)
@@ -100,12 +101,35 @@ Syntax definition
             - Values (eg: constant values)
         - Attributes are attached to the grammar symbols (Terminals, non-terminals) 
       - Syntax directed: Notation used for pointing the semantic actions to the production.
+        - A syntax-directed definition (SDD) consists of:
+          - A set of attributes for each grammar symbol.
+          - A set of semantic rules for each production that define how attributes are computed.
       - Working:
         - Parser (syntax analyzer) goes through the input program using the grammar (production rules).
         - Every time a production is applied, its attached semantic action is executed.
         - All these little fragments run in the order the parser applies the rules.
         - The combined effect of all those actions = the full translation
     - Postfix notation:
-      ## Notation
+      - Rules:
+        - If E is variable/constant → postfix(E) = E
+        - If E = E₁ op E₂ → postfix(E) = postfix(E₁) postfix(E₂) op
+        - If E = (E₁) → postfix(E) = postfix(E₁)
+      - Working:
+        - Scan left to right
+            - When you see an operator, take required operands from its left
+            - Apply operator, replace expression with result
+            - Repeat until finished
+      - Synthesized attributes:
+        - Attribute evaluation process:
+          - Construct a parse tree for the given input string.
+          - Apply the semantic rules to compute attribute values at each node.
+          - Use the notation X.a to denote the value of attribute a of grammar symbol X at a node.
+        - Annotated Parse Tree: A parse tree with attributes evaluated is called an annotated parse tree.
+        - Synthesized Attribute: If we can derive the attribute of a Node in the parse tree only with their children nodes.
+          - eg: expr -> expr1 + term : expr's attirbute is synthesized.\
+          - can be evaluated bottom-up
+        - Inherited Attribute: Node evaluated from parents and siblings
+          - Uses Top-down appraoch.
+    
   
 
