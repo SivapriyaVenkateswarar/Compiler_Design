@@ -80,6 +80,31 @@ Syntax definition
       - Lowest precedence: + and - (left-associative).
       - Higher precedence: * and / (left-associative).
       - Parentheses () can override precedence.
-    
-      
+        
+    * Difference between production and rules:
+      - Production: a single rewriting instruction in the grammar.
+      - Rules: collection of productions for the same nonterminal.
+    * Syntax-Directed Translation:
+      - Mapping the semantic actions to the grammar rules.
+      - Semantic actions: what to do when that production is recognized.
+      - Eg:
+        Expr → Expr1 + Term  // Production
+       { translate(Expr1);
+         translate(Term);
+         handle('+'); }  // Semantic action
+      - Attribute: A quantity associated with the construct.
+        - Eg:
+            - Type information (eg: FLOAT, BOOL)
+            - Intermediate code fragments (eg: instructions generated for an expression)
+            - Memory locations (eg: address of a variable)
+            - Values (eg: constant values)
+        - Attributes are attached to the grammar symbols (Terminals, non-terminals) 
+      - Syntax directed: Notation used for pointing the semantic actions to the production.
+      - Working:
+        - Parser (syntax analyzer) goes through the input program using the grammar (production rules).
+        - Every time a production is applied, its attached semantic action is executed.
+        - All these little fragments run in the order the parser applies the rules.
+        - The combined effect of all those actions = the full translation
+          
   
+
