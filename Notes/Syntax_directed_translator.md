@@ -124,10 +124,19 @@ Syntax definition
           - Use the notation X.a to denote the value of attribute a of grammar symbol X at a node.
         - Annotated Parse Tree: A parse tree with attributes evaluated is called an annotated parse tree.
         - Synthesized Attribute: If we can derive the attribute of a Node in the parse tree only with their children nodes.
-          - eg: expr -> expr1 + term : expr's attirbute is synthesized.\
+          - eg: expr -> expr1 + term : expr's attirbute is synthesized.
           - can be evaluated bottom-up
         - Inherited Attribute: Node evaluated from parents and siblings
-          - Uses Top-down appraoch.
-    
-  
-
+          - Uses a Top-down approach.
+      - Simple Syntax Directed Definition:
+        - A syntax-directed definition (SDD) is called simple if it follows a straightforward translation process.
+        - The translation of a nonterminal on the left-hand side of a production is:
+           - The concatenation of the translations of the symbols on the right-hand side.
+           - The concatenation happens in the same order as the symbols appear in the production.
+           - You can also add extra strings (like operators, punctuation, or formatting) in between.
+        - eg: PostFix:
+          - expr.t = expr1 || term || '+'  -> concatenation of all these terms will give expr, thus simple SDD.
+      - Tree Traversal:
+        - Tree Traversal is used for evaluating attributes and for ordering the execution of code.
+        - For synthesized attributes, any bottom-up traversal is sufficient.
+        - For inherited attributes, ordering is trickier because they may need values from the parent or siblings.
