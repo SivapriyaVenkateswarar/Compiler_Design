@@ -137,6 +137,12 @@ Syntax definition
         - eg: PostFix:
           - expr.t = expr1 || term || '+'  -> concatenation of all these terms will give expr, thus simple SDD.
       - Tree Traversal:
-        - Tree Traversal is used for evaluating attributes and for ordering the execution of code.
+        - Tree Traversal is used for evaluating attributes.
         - For synthesized attributes, any bottom-up traversal is sufficient.
         - For inherited attributes, ordering is trickier because they may need values from the parent or siblings.
+      - syntax-directed translation:
+        - SDD only allows calculating the attributes while respecting dependencies.
+        - SDT attaches the program fragment to the grammar production to define an order of execution.
+        - For Parse tree representation of action:
+          - A semantic action is represented as an extra child connected by a dashed line.
+          - The action node has no children, so it executes immediately when reached.
