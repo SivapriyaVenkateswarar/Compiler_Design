@@ -42,10 +42,10 @@ Syntax definition
   - Keep repeating until no non-terminals remain (only terminals).
 
   - eg:
-    - start with: <stmt> -> <expr>
-    - now, we have a production rule : <expr> -> id
-    - Replace <expr> in RHS
-    - <stmt> -> id
+    - start with: (stmt) -> (expr)
+    - now, we have a production rule : (expr) -> id
+    - Replace (expr) in RHS
+    - (stmt) -> id
 
 -> Note: A production rule is a replacement rule in a grammar. (converts non-terminals to terminal strings)
 
