@@ -66,5 +66,20 @@ Syntax definition
            - A → X₁ X₂ … Xₙ
            - where each Xᵢ is either a terminal or non-terminal.
         - Special case: If the production is A → ε, then the node labeled A has a single child labeled ε.
-      - Note -> the parse tree varies from input to input.
+        - Note -> the parse tree varies from input to input.
+    * Associativity of operators:
+      - When there are two operators on either side of an operand, how do we decide which operator to apply first?
+      - Eg: 9+5+2
+      - left associative: operand belongs to the left-most operator.
+        - Eg: Arithmetic operators are usually left-associated:
+          - (9+5)+2 or (9-5)-2
+      - Right associative: operand belongs to the right-most operator.
+        - eg: exponential or "=" in some languages.
+        - a=b=c -> a=(b=c)
+    * Precedence:
+      - Lowest precedence: + and - (left-associative).
+      - Higher precedence: * and / (left-associative).
+      - Parentheses () can override precedence.
+    
+      
   
