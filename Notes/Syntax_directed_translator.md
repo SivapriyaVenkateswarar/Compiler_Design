@@ -105,6 +105,7 @@ Syntax definition
         - Every time a production is applied, its attached semantic action is executed.
         - All these little fragments run in the order the parser applies the rules.
         - The combined effect of all those actions = the full translation
-          
+    - Postfix notation:
+      # Notation
   
 
