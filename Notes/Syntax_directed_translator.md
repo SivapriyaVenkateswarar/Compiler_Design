@@ -1,6 +1,7 @@
-Source code -> constituent pieces -> intermediate code
-Syntax: Structure of the program
-Semantics: What the program means
+* Source code -> constituent pieces -> intermediate code
+* Syntax: Structure of the program
+* Semantics: What the program means
+
 Lexical Analyzer: Converts complicated constructs like identifiers (sequence of characters) to a single unit called tokens.\
 * Lexical Analyzer converts a group of characters into meaningful units called lexemes. (lexemes contains <token name, attribute value>
     - This token name: terminal
