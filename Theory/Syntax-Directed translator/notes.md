@@ -24,9 +24,8 @@ Syntax definition
   - set of rules to define the syntax of a programming language.
   - Describes Hierarchical structure of the program: CFG converts to parser tree.
   - ex:
-  - <pre>plaintext
-    stmt → if (expr) stmt else stmt
-    expr → expr + expr | id```
+  <pre> stmt → if (expr) stmt else stmt
+  <pre> expr → expr + expr | id
 
   * Components of a CFG:
     - stmt -> if (expr) stmt else stmt
