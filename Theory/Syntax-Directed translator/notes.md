@@ -3,7 +3,7 @@
 * Semantics: What the program means
 
 Lexical Analyzer: 
-* groups sequences of characters (identifiers, keywords, operators, etc.) into meaningful units called lexemes, each of which is represented as a single token in the form <token name, attribute value>.
+* converts groups sequences of characters (identifiers, keywords, operators, etc.) into meaningful units called lexemes, each of which is represented as a single token in the form <token name, attribute value>.
     - Token name: terminal symbol
     - Attribute value: pointer to the symbol table.  
 
