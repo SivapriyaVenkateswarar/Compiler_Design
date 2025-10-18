@@ -207,20 +207,14 @@ Key terms:
 **Definition:**  
 Predictive parsing is a **top-down parsing method** that uses a **lookahead symbol** to decide which production of a nonterminal to apply, **without backtracking**.
 
----
-
 #### Lookahead Symbol
-- The **next input terminal being scanned**.  
-- Used to **proactively select the correct production**.
-
----
+- The next input terminal being scanned.  
+- Used to proactively select the correct production.
 
 #### FIRST Set
-- The set of **terminals that can appear at the start of strings** derived from a production.  
+- The set of terminals that can appear at the start of strings** derived from a production.  
 - Computed **recursively** for nonterminals.  
-- Guides the parser to **choose the production whose FIRST set contains the lookahead**.
-
----
+- Guides the parser to choose the production whose FIRST set contains the lookahead.
 
 #### Key Characteristics
 - **Deterministic:** One lookahead symbol is sufficient.  
@@ -229,8 +223,6 @@ Predictive parsing is a **top-down parsing method** that uses a **lookahead symb
   - No overlapping FIRST sets  
   - No left recursion  
 - Can handle **ε-productions** carefully using FOLLOW sets if needed.
-
----
 
 #### How It Works (Stepwise)
 1. Start with the **start symbol** at the root of the parse tree.  
