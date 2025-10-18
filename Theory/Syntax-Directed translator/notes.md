@@ -177,3 +177,70 @@ If the tokens violate the grammar, the parser reports a syntax error.
 - **Bottom-Up Parsing:**  
   - Construction starts at the leaves and proceeds towards the root.  
   - Can handle a larger class of grammars and translation schemes.  
+
+#### Top-down parsing 
+builds a parse tree **from the root to the leaves**. 
+Key terms:
+- **Lookahead symbol:** The current terminal in the input being scanned, used to select the appropriate production. Initially, it is the leftmost terminal of the input string.  
+- **ε-production:** A production that represents an **empty string**, used when no other production matches.  
+- **Non-terminal node:** A node in the parse tree labeled with a non-terminal symbol.  
+- **Terminal node:** A node in the parse tree labeled with a terminal symbol.
+
+##### Steps:
+
+1. **Start at the root**  
+   - Label the root with the **start symbol** (e.g., `stmt`).
+2. **Expand a non-terminal node in tree**  
+   - At node `N` labeled with non-terminal `A`:  
+     - Select a production for `A` using the lookahead symbol.  
+     - Create children for each symbol in the production body.
+3. **Move to the next node**  
+   - Typically the **leftmost unexpanded non-terminal** in the tree.
+4. **Match terminals of the tree with lookahead in the input**  
+   - If the current node is a **terminal** and matches the lookahead, advance in both the input and the parse tree.  
+   - Update the lookahead to the next terminal in the input.
+5. **Repeat**  
+   - Continue until the parse tree fully generates the input string.
+
+### Predictive Parsing
+
+**Definition:**  
+Predictive parsing is a **top-down parsing method** that uses a **lookahead symbol** to decide which production of a nonterminal to apply, **without backtracking**.
+
+---
+
+#### Lookahead Symbol
+- The **next input terminal being scanned**.  
+- Used to **proactively select the correct production**.
+
+---
+
+#### FIRST Set
+- The set of **terminals that can appear at the start of strings** derived from a production.  
+- Computed **recursively** for nonterminals.  
+- Guides the parser to **choose the production whose FIRST set contains the lookahead**.
+
+---
+
+#### Key Characteristics
+- **Deterministic:** One lookahead symbol is sufficient.  
+- **No backtracking required.**  
+- Grammar must be **LL(1)**:  
+  - No overlapping FIRST sets  
+  - No left recursion  
+- Can handle **ε-productions** carefully using FOLLOW sets if needed.
+
+---
+
+#### How It Works (Stepwise)
+1. Start with the **start symbol** at the root of the parse tree.  
+2. **Expand nonterminals** using the production whose FIRST set contains the lookahead.  
+3. **Matce h terminals** with the lookahead symbol and advance input.  
+4. Repeat until the **entire input is parsed** and the parse tree is complete.
+
+---
+
+#### Difference from General Top-Down Parsing
+- **General top-down:** Lookahead is used only to check matches; may require backtracking.  
+- **Predictive parsing:** Lookahead **directs the parser**, no guessing; FIRST sets ensure **unique choices**.
+
