@@ -2,9 +2,9 @@
 * Syntax: Structure of the program
 * Semantics: What the program means
 
-Lexical Analyzer: Converts complicated constructs like identifiers (sequence of characters) to a single unit called tokens.\
-* Lexical Analyzer converts a group of characters into meaningful units called lexemes. (lexemes contains <token name, attribute value>
-    - This token name: terminal
+Lexical Analyzer: 
+* groups sequences of characters (identifiers, keywords, operators, etc.) into meaningful units called lexemes, each of which is represented as a single token in the form <token name, attribute value>.
+    - Token name: terminal symbol
     - Attribute value: pointer to the symbol table.  
 
 Two kinds of intermediate code generation:
