@@ -225,14 +225,16 @@ Predictive parsing is a **top-down parsing method** that uses a **lookahead symb
 - Can handle **ε-productions** carefully using FOLLOW sets if needed.
 
 #### How It Works (Stepwise)
-1. Start with the **start symbol** at the root of the parse tree.  
-2. **Expand nonterminals** using the production whose FIRST set contains the lookahead.  
-3. **Matce h terminals** with the lookahead symbol and advance input.  
-4. Repeat until the **entire input is parsed** and the parse tree is complete.
-
----
+1. Start with the start symbol at the root of the parse tree.  
+2. Expand nonterminals using the production whose FIRST set contains the lookahead.  
+3. Match terminals with the lookahead symbol and advance input.  
+4. Repeat until the entire input is parsed and the parse tree is complete.
 
 #### Difference from General Top-Down Parsing
 - **General top-down:** Lookahead is used only to check matches; may require backtracking.  
-- **Predictive parsing:** Lookahead **directs the parser**, no guessing; FIRST sets ensure **unique choices**.
+- **Predictive parsing:** Lookahead directs the parser, no guessing; FIRST sets ensure unique choices.
+
+Note:
+- An ε-production is a grammar rule that allows a nonterminal to produce an empty string (do nothing).
+- If no other production matches the lookahead, the parser can apply the ε-production as a default.
 
