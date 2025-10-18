@@ -25,7 +25,7 @@ Syntax definition
   - Describes Hierarchical structure of the program: CFG converts to parser tree.
   - ex:
   <pre> stmt → if (expr) stmt else stmt
-  <pre> expr → expr + expr | id
+  expr → expr + expr | id  </pre>
 
   * Components of a CFG:
     - stmt -> if (expr) stmt else stmt
