@@ -1,7 +1,5 @@
-A **terminal symbol** is a basic symbol in a language that **cannot be broken down further** during parsing. It is one of the fundamental components of a grammar used in compiler design.
-
-### Key Points:
-- Terminal symbols are the **actual symbols** that appear in the source code.
+A **terminal symbol** is a basic symbol in a language that **cannot be broken down further** during parsing. 
+- the **actual symbols** that appear in the source code.
 - Examples include:
   - Keywords: `if`, `while`, `return`
   - Operators: `+`, `*`, `=`
