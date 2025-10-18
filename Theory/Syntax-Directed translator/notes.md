@@ -21,14 +21,19 @@ Two kinds of intermediate code generation:
 Syntax definition
 -
 * Grammar:
-  - used to define the syntax of a programming language.
+  - set of rules to define the syntax of a programming language.
   - Describes Hierarchical structure of the program: CFG converts to parser tree.
+  - ex:
+  - ```plaintext
+stmt → if (expr) stmt else stmt
+expr → expr + expr | id
+
   * Components of a CFG:
     - stmt -> if (expr) stmt else stmt
     - Terminal symbols: lexical/elementary symbols of the statement (if, and parentheses in this example)
     - Non-terminal symbols: set of terminal units representing a statement. (stmt, expr)
     - production: Consists of a non-terminal on the left side, referred to as the head, and a sequence of terminals/non-terminals on the right side called the body.
-      - Production also represents the construct -> written form of construct.
+      - Production describes how a programming construct (Assignment, Conditional statements, loops, etc) is written using terminals and non-terminals.
     - You list all its rules, and you choose one special nonterminal (called the start symbol) as the root of the grammar. That’s where parsing always begins.
 
 * Derivations:
@@ -41,7 +46,7 @@ Syntax definition
 
   - eg:
     - start with: (stmt) -> (expr)
-    - now, we have a production rule : (expr) -> id
+    - now, if we have a production rule : (expr) -> id
     - Replace (expr) in RHS
     - (stmt) -> id
 
