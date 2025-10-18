@@ -153,8 +153,8 @@ Syntax definition
           - The action node has no children, so it executes immediately when reached.
 
 -> Note:
-Lexer = “word detector” → turns letters into meaningful words (tokens).
-Parser = “grammar checker” → ensures the sentence (sequence of tokens) is grammatically correct.
+- Lexer = “word detector” → turns letters into meaningful words (tokens).
+- Parser = “grammar checker” → ensures the sentence (sequence of tokens) is grammatically correct.
     
 ## Parsing:
 The parser takes the token stream from the lexer.
