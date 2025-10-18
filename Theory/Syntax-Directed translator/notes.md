@@ -11,7 +11,7 @@ Two kinds of intermediate code generation:
 -
 * Syntax tree:
   - Produced by parser
-  - loop name as root-> right side with body of loop -> left side with condition of statement.
+  - Example representation for loops:  loop name as root-> right side with body of loop -> left side with condition of statement.
 * Three-code address:
   - converted by parser after the syntax tree. 
   - At most one operation per instruction (Comparison, binary operation, computation)
@@ -25,7 +25,7 @@ Syntax definition
   - Describes Hierarchical structure of the program: CFG converts to parser tree.
   - ex:
   <pre> stmt → if (expr) stmt else stmt
-        expr → expr + expr | id  </pre>
+    expr → expr + expr | id  </pre>
 
   * Components of a CFG:
     - stmt -> if (expr) stmt else stmt
@@ -58,7 +58,7 @@ Syntax definition
   * Parse tree:
     -shows how the start symbol converts to terminal strings.
     * Components of a parse tree:
-      - In a parse tree, the parent node represents a non-terminal and its children represent how that non-terminal is expanded.
+      - In a parse tree, the parent node represents a non-terminal and its children represent how that non-terminal is expanded. (Parent -> whole, children -> parts of the whole)
       - Root → The root is labeled with the start symbol of the grammar.
       - Leaves → Each leaf is labeled with either a terminal symbol or ε (empty string).
       - Interior Nodes → Each interior node is labeled with a non-terminal symbol.
@@ -91,7 +91,7 @@ Syntax definition
       - Semantic actions: what to do when that production is recognized.
       - Eg:
         Expr → Expr1 + Term  // Production
-       { translate(Expr1);
+       { translate(Expr1); 
          translate(Term);
          handle('+'); }  // Semantic action
       - Attribute: A quantity associated with the construct.
@@ -127,10 +127,11 @@ Syntax definition
           - Apply the semantic rules to compute attribute values at each node.
           - Use the notation X.a to denote the value of attribute a of grammar symbol X at a node.
         - Annotated Parse Tree: A parse tree with attributes evaluated is called an annotated parse tree.
-        - Synthesized Attribute: If we can derive the attribute of a Node in the parse tree only with their children nodes.
+        - Synthesized Attribute: If we can derive the attribute of a Node in the parse tree only with their children nodes. (Term → id)
           - eg: expr -> expr1 + term : expr's attirbute is synthesized.
           - can be evaluated bottom-up
         - Inherited Attribute: Node evaluated from parents and siblings
+          - eg: int c, Decl (parent) → DataType id (child)
           - Uses a Top-down approach.
       - Simple Syntax Directed Definition:
         - A syntax-directed definition (SDD) is called simple if it follows a straightforward translation process.
@@ -150,3 +151,29 @@ Syntax definition
         - For Parse tree representation of action:
           - A semantic action is represented as an extra child connected by a dashed line.
           - The action node has no children, so it executes immediately when reached.
+
+-> Note:
+Lexer = “word detector” → turns letters into meaningful words (tokens).
+Parser = “grammar checker” → ensures the sentence (sequence of tokens) is grammatically correct.
+    
+## Parsing:
+The parser takes the token stream from the lexer.
+It checks if the tokens conform to the grammar rules.
+If the tokens fit the grammar, parsing succeeds (the compiler can translate/execute the code).
+If the tokens violate the grammar, the parser reports a syntax error.
+
+- How does the parser check if the token stream matches the predefined grammar rules?
+    - Conceptually, it builds a tree structure:
+        - Root = start symbol of the grammar
+        - Internal nodes = non-terminals
+        - Leaves = tokens (terminals) from the lexer
+    - Even if the parser doesn’t physically build the tree, it’s still tracing this structure in its logic.
+      
+### Top-Down vs Bottom-Up Parsers
+
+- **Top-Down Parsing:**  
+  - Construction starts at the root and proceeds towards the leaves.  
+  - Popular and more efficient to build.  
+- **Bottom-Up Parsing:**  
+  - Construction starts at the leaves and proceeds towards the root.  
+  - Can handle a larger class of grammars and translation schemes.  
