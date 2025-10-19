@@ -200,7 +200,7 @@ Key terms:
    - If the current node is a **terminal** and matches the lookahead, advance in both the input and the parse tree.  
    - Update the lookahead to the next terminal in the input.
 5. **Repeat**  
-   - Continue until the parse tree fully generates the input string.
+   - Continue until the parse tree fully generates the input string. (Uses backtracking).
 
 ### Predictive Parsing
 
@@ -210,10 +210,10 @@ Predictive parsing is a **top-down parsing method** that uses a **lookahead symb
 #### Lookahead Symbol
 - The next input terminal being scanned.  
 - Used to proactively select the correct production.
-
+  
 #### FIRST Set
 - The set of terminals that can appear at the start of strings** derived from a production.  
-- Computed **recursively** for nonterminals.  
+- Computed recursively for nonterminals.  
 - Guides the parser to choose the production whose FIRST set contains the lookahead.
 
 #### Key Characteristics
@@ -222,7 +222,7 @@ Predictive parsing is a **top-down parsing method** that uses a **lookahead symb
 - Grammar must be **LL(1)**:  
   - No overlapping FIRST sets  
   - No left recursion  
-- Can handle **ε-productions** carefully using FOLLOW sets if needed.
+- Can handle ε-productions carefully using FOLLOW sets if needed.
 
 #### How It Works (Stepwise)
 1. Start with the start symbol at the root of the parse tree.  
@@ -238,3 +238,52 @@ Note:
 - An ε-production is a grammar rule that allows a nonterminal to produce an empty string (do nothing).
 - If no other production matches the lookahead, the parser can apply the ε-production as a default.
 
+### Characteristics of a Predictive Parser
+
+- For each nonterminal A, the parser:
+  - Selects a production using the lookahead symbol based on FIRST sets
+  - Executes the production body step by step:
+    - If the symbol is a terminal → it must match the lookahead → consume input
+    - If the symbol is a nonterminal → recursively call its parsing function
+    - If a mismatch occurs → report a syntax error
+- Requires FIRST sets to be disjoint to avoid backtracking
+- Uses a single lookahead symbol to make parsing decisions
+- Works only with LL(1) grammars
+
+### What is a Translation Scheme?
+
+- A translation scheme is a grammar with embedded semantic actions. (Grammar+action)
+- Semantic actions specify what computation or translation should happen during parsing
+
+note:
+- User code: 3 + 4
+- Grammar: matches it as expr → expr + term
+- Semantic action: { expr.value = expr1.value + term.value } → actually performs the addition
+
+### Syntax-Directed Translation with a Predictive Parser
+- A predictive parser can be extended to perform translation while parsing
+- Semantic actions are executed in the order specified in the production rules
+
+### Steps to Build a Syntax-Directed Translator
+1. Start with a context-free grammar
+2. Construct a predictive parser from the grammar
+3. Add semantic actions to form a translation scheme
+4. Insert semantic actions into the parser code:
+   - If an action appears after a grammar symbol X → place it after processing X
+   - If an action appears at the beginning of a production → place it before parsing that production
+5. Perform parsing and translation simultaneously
+
+## Translator:
+
+- In compilers, a translator is a program that converts one form of input into another form. 
+- A syntax-directed translator follows grammar rules and uses semantic actions to produce output while parsing.
+- Ex: converting rules to postfix.
+  - Input expression: 3+4
+  -  <pre>
+      expr → expr + term { print('+') }
+      expr → term
+      term → 3 { print('3') }
+      term → 4 { print('4') }
+    </pre>
+- Here, print means produce output as part of translation.
+- 
