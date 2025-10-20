@@ -352,3 +352,47 @@ R → + T R | ε
     </pre>
 - Here, print means produce output as part of translation.
 
+## Abstract Syntax Tree (AST)
+A tree-like data structure used in **compilers/interpreters** to represent the **semantic structure** (meaning) of a program.
+
+### Structure
+- **Interior nodes:** Operators or constructs (e.g., `+`, `-`, `if`, `while`)  
+- **Children nodes:** Operands or subcomponents of the operator  
+
+**Example:** Expression `9 - 5 + 2`
+
+<pre>
+             -
+           /   \
+          9     +
+              /   \
+             5     2
+</pre>
+
+- **Root:** `+` (last operator applied)  
+- **Left subtree:** `9 - 5` (evaluated first)  
+- **Right child:** `2`  
+- Reflects **left-to-right evaluation** for operators with the same precedence.
+
+## Why AST is Useful
+- Simplifies **semantic actions**: Translation schemes operate on AST instead of full parse tree  
+- Removes unnecessary grammar details: helper nodes like `expr`, `term` are removed  
+- Closer to **actual computation**: matches operator precedence and subexpression evaluation  
+
+### Applications
+
+| Stage                   | Use of AST                                               |
+| ----------------------- | -------------------------------------------------------- |
+| Semantic Analysis       | Type checking, symbol table attachment, scope resolution |
+| Code Generation         | Translate AST into intermediate/final code               |
+| Optimization            | Simplify expressions, remove redundancies                |
+| Interpreter Execution   | Walk AST to execute code directly                        |
+| Static Analysis         | Linters, security tools analyze AST structure            |
+| Program Transformations | Refactoring, transpilers, automated code edits           |
+
+## Statement
+> “A good translation scheme should have a grammar whose parse trees are close to ASTs.”
+**Meaning:**
+- Grammar should be designed so that the parse tree already resembles the AST  
+- Makes **semantic actions** (like generating postfix or 3-address code) easier and cleaner  
+- Reduces the need for heavy **AST transformations** after parsing
