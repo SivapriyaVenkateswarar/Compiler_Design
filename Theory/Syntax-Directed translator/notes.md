@@ -374,7 +374,7 @@ A tree-like data structure used in **compilers/interpreters** to represent the *
 - **Right child:** `2`  
 - Reflects **left-to-right evaluation** for operators with the same precedence.
 
-## Why AST is Useful
+### Why AST is Useful
 - Simplifies **semantic actions**: Translation schemes operate on AST instead of full parse tree  
 - Removes unnecessary grammar details: helper nodes like `expr`, `term` are removed  
 - Closer to **actual computation**: matches operator precedence and subexpression evaluation  
@@ -390,8 +390,7 @@ A tree-like data structure used in **compilers/interpreters** to represent the *
 | Static Analysis         | Linters, security tools analyze AST structure            |
 | Program Transformations | Refactoring, transpilers, automated code edits           |
 
-## Statement
-> “A good translation scheme should have a grammar whose parse trees are close to ASTs.”
+### Statement : “A good translation scheme should have a grammar whose parse trees are close to ASTs.”
 **Meaning:**
 - Grammar should be designed so that the parse tree already resembles the AST  
 - Makes **semantic actions** (like generating postfix or 3-address code) easier and cleaner  
