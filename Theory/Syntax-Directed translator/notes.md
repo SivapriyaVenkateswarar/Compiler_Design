@@ -273,6 +273,71 @@ note:
    - If an action appears at the beginning of a production → place it before parsing that production
 5. Perform parsing and translation simultaneously
 
+### Left Recursion
+#### 1. Problem: Left Recursion
+
+- A grammar is **left-recursive** if a nonterminal appears as the first symbol in its own production:
+
+A → A α | β
+
+- α = some sequence  
+- β = base case  
+
+**Example:**
+
+E → E + T | T
+
+- **Problem:** Predictive parsers (LL(1), recursive descent) loop infinitely:
+
+E → E + T → E + T + T → ...
+
+
+- **Cause:** The parser calls itself before consuming input.
+
+#### 2. Solution: Remove Left Recursion
+
+- **General transformation:**
+
+A → A α | β becomes:
+
+A → β R
+R → α R | ε
+
+Where:  
+- β = base case (does not start with A)  
+- α = recursive part  
+- R = new helper nonterminal  
+- ε = empty string (stops recursion)
+
+#### 3. Example: `E → E + T | T`
+
+**Step 1:** Identify parts  
+
+A = E
+α = + T
+β = T
+
+**Step 2:** Apply transformation
+
+E → T R
+R → + T R | ε
+
+
+#### 4. Intuition of R
+
+- `E → T R`  
+  - `T` = first term  
+  - `R` = optional repeated `+ T` blocks  
+
+- `R → + T R | ε`  
+  - `+ T R` = “add another term and repeat if needed”  
+  - `ε` = “stop adding terms”  
+
+**Visual analogy:**
+
+- `E = T` → first term  
+- `R = + T + T + T ...` (optional repetition)
+
 ## Translator:
 
 - In compilers, a translator is a program that converts one form of input into another form. 
@@ -286,4 +351,4 @@ note:
       term → 4 { print('4') }
     </pre>
 - Here, print means produce output as part of translation.
-- 
+
